@@ -61,7 +61,7 @@ public class Actor {
 					+ film.getReleaseYear() + " Rating: " + film.getRating() 
 					+ " Description: " + film.getDescription() 
 					+ " Language: " + film.getLanguage());
-		}
+			}
 		List<Film> returnFilms = new ArrayList<>(films);
 		return returnFilms;
 	}
