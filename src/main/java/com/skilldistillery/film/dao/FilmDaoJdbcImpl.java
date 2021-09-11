@@ -465,7 +465,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return true;
 	}
 	
-	public boolean editFilm(Film film) {
+	public boolean editFilm(int filmId) {
 		boolean status = false;
 		
 		
