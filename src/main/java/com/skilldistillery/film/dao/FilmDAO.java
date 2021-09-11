@@ -19,7 +19,7 @@ public interface FilmDAO {
 		  public boolean createFilm(String title, String description, Integer releaseYear, int languageId, int rentalDuration,
 					double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures);
 		  public boolean deleteFilm(int filmId);
-		  public boolean editFilm( int filmId);
+		  public boolean editFilm(Film film);
 		
 		
 }

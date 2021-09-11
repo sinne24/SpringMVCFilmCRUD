@@ -465,12 +465,51 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return true;
 	}
 	
-	public boolean editFilm(int filmId) {
+	public boolean editFilm(Film film) {
 		boolean status = false;
+		Connection conn = null;
 		
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			conn.setAutoCommit(false); // START TRANSACTION
+			String sql = "UPDATE film SET title=?, description=?, "
+					+ "release_year=?, language_id=?, rental_duration=?, "
+					+ "rental_rate=?, length=?, replacement_cost=?, rating=?, "
+					+ "special_features=? " + " WHERE id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			ps.setString(1, film.getTitle());
+			ps.setString(2, film.getDescription());
+			ps.setInt(3, film.getReleaseYear());
+			ps.setInt(4, film.getLanguageId());
+			ps.setInt(5, film.getRentalDuration());
+			ps.setDouble(6, film.getRentalRate());
+			ps.setInt(7, film.getLength());
+			ps.setDouble(8, film.getReplacementCost());
+			ps.setString(9, film.getRating());
+			ps.setString(10, film.getSpecialFeatures());
+			ps.setInt(11, film.getId());
+
+			int result = ps.executeUpdate();
+			if (result == 1) {
+				ResultSet rs = ps.getGeneratedKeys();
+				if (rs.next()) {
+					film.setId(rs.getInt(1));
+					conn.commit();
+					status = true;
+				}
+				rs.close();
+				ps.close();
+				conn.close();
+				return status;
+			}
+			ps.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		
-		
+		}
 		return status;
 	}
-
 }
