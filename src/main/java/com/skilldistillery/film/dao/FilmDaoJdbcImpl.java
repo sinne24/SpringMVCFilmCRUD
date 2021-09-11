@@ -14,10 +14,12 @@ import com.skilldistillery.film.entities.Film;
 
 public class FilmDaoJdbcImpl implements FilmDAO {
 
-	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
+	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Mountain";
 	private String user = "student";
 	private String pass = "student";
 
+
+	
 	public FilmDaoJdbcImpl() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -393,7 +395,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		film.setReplacementCost(replacementCost);
 		film.setRating(rating);
 		film.setSpecialFeatures(specialFeatures);
-
+		
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false); // START TRANSACTION
@@ -465,7 +467,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return true;
 	}
 	
-	public boolean editFilm(Film film) {
+	public Film editFilm(Film film) {
 		boolean status = false;
 		Connection conn = null;
 		
@@ -501,7 +503,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				rs.close();
 				ps.close();
 				conn.close();
-				return status;
 			}
 			ps.close();
 			conn.close();
@@ -510,6 +511,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			e.printStackTrace();
 		
 		}
-		return status;
+		return film;
 	}
 }
