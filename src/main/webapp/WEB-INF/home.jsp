@@ -10,5 +10,6 @@
 </head>
 <body>
  <h1>MVC Film Site</h1>
+ <a href="retrieveFilm.html">Get Film By Id</a><br/>
 </body>
 </html>
