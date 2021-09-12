@@ -40,9 +40,6 @@ public class FilmController {
 		mv.setViewName("redirect:confirmation.do");
 			redir.addFlashAttribute("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration, rentalRate,
 					length, replacementCost, rating, specialFeatures));
-		mv.setViewName("redirect:confirmation.do");
-		
-
 		return mv;
 	}
 
