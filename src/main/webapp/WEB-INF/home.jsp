@@ -11,5 +11,8 @@
 <body>
  <h1>MVC Film Site</h1>
  <a href="retrieveFilm.html">Get Film By Id</a><br/>
+ <a href="createFilm.html">Add A New Film</a><br/>
+ <a href="editFilm.html">Edit An Existing Film</a><br/>
+ <a href="deleteFilm.html">Delete An Existing Film</a><br/>
 </body>
 </html>

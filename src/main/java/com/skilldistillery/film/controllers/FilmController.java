@@ -37,17 +37,16 @@ public class FilmController {
 
 	}
 
-	@RequestMapping(path = "createFilm.do",
-            params = "film",
-            method = RequestMethod.POST)
-public ModelAndView createFilm(String title, String description, Integer releaseYear, int languageId, int rentalDuration,
-		double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures){
-ModelAndView mv = new ModelAndView();
-mv.setViewName("redirect:confirmation.do");
-mv.addObject("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration,
-				rentalRate, length, replacementCost, rating, specialFeatures));
-      return mv;
-}
+	@RequestMapping(path = "createFilm.do", params = "film", method = RequestMethod.POST)
+	public ModelAndView createFilm(String title, String description, Integer releaseYear, int languageId,
+			int rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
+			String specialFeatures) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:confirmation.do");
+		mv.addObject("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration, rentalRate,
+				length, replacementCost, rating, specialFeatures));
+		return mv;
+	}
 
 	@RequestMapping(path = "confirmation.do", method = RequestMethod.GET)
 	public ModelAndView filmCreated() {
