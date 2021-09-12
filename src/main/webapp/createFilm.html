@@ -4,58 +4,56 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Films</title>
 <style>
-        .tab1 {
-            tab-size: 4;
-        }
-    </style>
+.tab1 {
+	tab-size: 4;
+}
+</style>
 </head>
 <body>
 	<h3>Create Film</h3>
-	<form action="createFilm.do" method="GET">
-		Input data for each field regarding the film you'd like to add:
-		<br>
-		<br>
-		Title:
-		<br>
-		<pre class="tab1"><input type="text" name="title"/></pre>
-		<br>
+	<form action="createFilm.do" method="POST">
+		Input data for each field regarding the film you'd like to add: <br>
+		<br> Title:
+		<pre class="tab1">
+				<input type="text" name="title" />
+			</pre>
 		A short description of the film:
-		<br>
-		<input type="text" name="description"/> 
-		<br>
+		<pre class="tab1">
+				<input type="text" name="description" />
+			</pre>
 		The four digit year the film was released:
-		<br>
-		<input type="text" name="releaseYear"/> 
-		<br>
+		<pre class="tab1">
+				<input type="text" name="releaseYear" />
+			</pre>
 		The language the film is recorded in:
-		<br>
-		<input type="text" name="languageId"/> 
-		<br>
+		<pre class="tab1">
+				<input type="text" name="languageId" />
+			</pre>
 		The rental Duration in total full days:
-		<br>
-		<input type="text" name="rentalDuration"/> 
-		<br>
+		<pre class="tab1">
+				<input type="text" name="rentalDuration" />
+			</pre>
 		The rental rate:
-		<br>
-		<input type="text" name="rentalRate"/> 
-		<br>
+		<pre class="tab1">
+				<input type="text" name="rentalRate" />
+			</pre>
 		Film length:
-		<br>
-		<input type="text" name="length"/> 
-		<br>
+		<pre class="tab1">
+				<input type="text" name="length" />
+			</pre>
 		Film replacement cost:
-		<br>
-		<input type="text" name="replacementCost"/> 
-		<br>
+		<pre class="tab1">
+				<input type="text" name="replacementCost" />
+			</pre>
 		Rating (1-5):
+		<pre class="tab1">
+				<input type="text" name="rating" />
+			</pre>
+		<br> Hit the submit button below once you've filled all of the
+		fields. <br> <br> <input type="submit" value="Add Film" /><br>
 		<br>
-		<input type="text" name="rating"/> 
-		<br>
-		<br>
-		Hit the submit button below once you've filled all of the fields.
-		<br>
-		<input type="submit" value="Add Film" />
 	</form>
-	<a href=home.do>Return to Home</a><br/>
+	<a href=home.do>Return to Home</a>
+	<br />
 </body>
 </html>
