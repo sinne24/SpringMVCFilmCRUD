@@ -35,20 +35,14 @@ public class FilmController {
 	@RequestMapping(path = "createFilm.do", params = "film", method = RequestMethod.POST)
 	public ModelAndView createFilm(String title, String description, Integer releaseYear, int languageId,
 			int rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
-<<<<<<< HEAD
-			String specialFeatures) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:confirmation.do");
-		mv.addObject("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration, rentalRate,
-				length, replacementCost, rating, specialFeatures));
-=======
 			String specialFeatures, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration, rentalRate,
-				length, replacementCost, rating, specialFeatures));
+		mv.setViewName("redirect:confirmation.do");
+			redir.addFlashAttribute("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration, rentalRate,
+					length, replacementCost, rating, specialFeatures));
 		mv.setViewName("redirect:confirmation.do");
 		
->>>>>>> 306f2cce670ffeefc38afc5a662c24cec1701f3d
+
 		return mv;
 	}
 
