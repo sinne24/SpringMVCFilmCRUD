@@ -3,13 +3,57 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Films</title>
+<style>
+        .tab1 {
+            tab-size: 4;
+        }
+    </style>
 </head>
 <body>
 	<h3>Create Film</h3>
-	<form action="retrieveFilm.do" method="GET">
+	<form action="createFilm.do" method="GET">
 		Input data for each field regarding the film you'd like to add:
 		<br>
-		<input type="text" name="id"/> 
+		<br>
+		Title:
+		<br>
+		<pre class="tab1"><input type="text" name="title"/></pre>
+		<br>
+		A short description of the film:
+		<br>
+		<input type="text" name="description"/> 
+		<br>
+		The four digit year the film was released:
+		<br>
+		<input type="text" name="releaseYear"/> 
+		<br>
+		The language the film is recorded in:
+		<br>
+		<input type="text" name="languageId"/> 
+		<br>
+		The rental Duration in total full days:
+		<br>
+		<input type="text" name="rentalDuration"/> 
+		<br>
+		The rental rate:
+		<br>
+		<input type="text" name="rentalRate"/> 
+		<br>
+		Film length:
+		<br>
+		<input type="text" name="length"/> 
+		<br>
+		Film replacement cost:
+		<br>
+		<input type="text" name="replacementCost"/> 
+		<br>
+		Rating (1-5):
+		<br>
+		<input type="text" name="rating"/> 
+		<br>
+		<br>
+		Hit the submit button below once you've filled all of the fields.
+		<br>
 		<input type="submit" value="Add Film" />
 	</form>
 	<a href=home.do>Return to Home</a><br/>

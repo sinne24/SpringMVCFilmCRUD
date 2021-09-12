@@ -37,6 +37,9 @@ public class FilmController {
 			int rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
 			String specialFeatures, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
+		
+		//TODO: add logic to convert String language into language ID
+		//TODO: parse numbers out of strings as necessary for each field
 		mv.setViewName("redirect:confirmation.do");
 			redir.addFlashAttribute("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration, rentalRate,
 					length, replacementCost, rating, specialFeatures));
