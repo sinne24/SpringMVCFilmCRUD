@@ -33,16 +33,28 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "createFilm.do", params = "film", method = RequestMethod.POST)
-	public ModelAndView createFilm(String title, String description, Integer releaseYear, int languageId,
-			int rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
-			String specialFeatures, RedirectAttributes redir) {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView createFilm(@RequestParam("title") String title, @RequestParam("description") String description, 
+		@RequestParam("releaseYear") String releaseYear, @RequestParam("languageId") String languageId,
+			@RequestParam("rentalDuration") String rentalDuration, @RequestParam("rentalRate") String rentalRate, 
+				@RequestParam("length") String length, @RequestParam("replacementCost") String replacementCost, 
+					@RequestParam("rating") String rating, @RequestParam("specialFeatures") String specialFeatures) { 
 		
-		//TODO: add logic to convert String language into language ID
-		//TODO: parse numbers out of strings as necessary for each field
+//					RedirectAttributes redir
+		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:confirmation.do");
-			redir.addFlashAttribute("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration, rentalRate,
-					length, replacementCost, rating, specialFeatures));
+		
+		int year = Integer.parseInt(releaseYear);
+		int langId = Integer.parseInt(languageId);
+		int duration = Integer.parseInt(rentalDuration);
+		double rate = Double.parseDouble(rentalRate);
+		int len = Integer.parseInt(length);
+		double repCost = Double.parseDouble(replacementCost);
+		
+//		redir.addFlashAttribute("film", filmDao.createFilm(title, description, year, langId, duration, rate,
+//				len, repCost, rating, specialFeatures));
+		
+		mv.addObject("film", filmDao.createFilm(title, description, year, langId, duration, rate,
+				len, repCost, rating, specialFeatures));
 		return mv;
 	}
 
