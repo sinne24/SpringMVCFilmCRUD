@@ -24,11 +24,18 @@ If the user chooses to create a film they will be prompted to enter values for t
 
 If edit film is selected the user will be prompted to enter the id of the film they would like to change. Once submitted, the selected film and all of its attribute is presented to the user with forms corresponding to each attribute that may be changed. The user may enter their changes, press submit, and is then met with a confirmation page that lets them know their changes have been implemented.
 
-The final option is to delete a film. If selected the user will be asked to provide the film id for the movie they would like to delete. Once submitted, a page populates confirming that the film has been deleted off of the database. 
+The final option is to delete a film. If selected the user will be asked to provide the film id for the movie they would like to delete. Once submitted, a page populates confirming that the film has been deleted off of the database.
 
 ### Lessons Learned
- To accomplish the creation of this project, we, team 8 of Skill Distillery SD30, used a host of tools new to us. The core logic is written in the java language and was programmed in the Ecplise IDE. The local database accessed by Spring MVC Film is a mysql database, which is accessed using prepared statements and binding variables within the FilmDAOJdbcImpl class. The user interface files are a combination of html and jsp files.
-   * File Interactions:
-   * Timing:
-   * Github:
-   * Cooperation:
+ To accomplish the creation of this project, we, Team 8 of Skill Distillery SD30, used a host of tools new to us. The core logic is written in the java language and was programmed in the Ecplise IDE. The local database accessed by Spring MVC Film is a mysql database, which is accessed using prepared statements and binding variables within the FilmDAOJdbcImpl class. The user interface files are a combination of html and jsp files.
+   * File Interactions: A massive learning curve we had to surmount for this project was becoming comfortable with how files communicate and interact to form a functioning full stack program. All of the mental gaps, both big and small, leftover from the past week's classes had to be filled. Additionally understanding how different file types, each with its own lexical and syntactical nuances, communicate with each other is a skill obtained 'on the job' through practical application. The most difficult part was becoming comfortable with the transitions and catching momentum. Once both partners had more or less filled their mental gaps pertaining to the needs of this particular program, the rest of its creation was relatively smooth.
+   * Timing: While momentum may have been caught, and project synthesis may have been relatively smooth, that does not mean the project was not time consuming. The amount of code needed for this project, regardless of how well we worked, took many more hours than we anticipated. Going forward, each of us now has a better understanding of the time commitment one must put forward for projects of this kind.
+   * Github: Using Github as a team was a lesson in patience. Probably about 35% of our hang ups were from complications in the terminal pulling or pushing to github, or repairing code that was somehow altered in the process of pulling or pushing. We continuously ran into an issue where when the project was pulled by one of us where the individual's most recently updated files contained lines that looked like this:
+      "head >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+                        or
+      "savbdgfjkvlrt,jkje4wq5236782901kdmcvfjglk"
+                        or
+      "========================================"
+
+    and those same files also contained several lines of replicated code, despite neither team member having added any of this to the file.   
+   * Cooperation: Given all of the topics already covered in lessons learned, the arguably most important learning aspect of the project was how to cooperate as a team. While we did not experience any large hang-ups in this regard, fleshing out quieter necessities like communication, joint scheduling, and initiative when alone, were heavily reinforced. Both team members have full lives, so practice in compromising on a schedule through necessary communication was positively achieved. Paired with that is the need to be able to work alone and find what needs doing. Both team members found themselves working alone for periods and still contributed significantly during that time.
