@@ -92,7 +92,7 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "editLanding.do", params = "id", method = RequestMethod.GET)
+	@RequestMapping(path = "editFilmLanding.do", params = "id", method = RequestMethod.POST)
 	public ModelAndView editFilmLanding(@RequestParam("id") int filmId, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		redir.addFlashAttribute("id", filmId);
