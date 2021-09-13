@@ -34,23 +34,30 @@ public class FilmController {
 
 	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST)
 	public ModelAndView createFilm(@RequestParam("film.title") String title, @RequestParam("film.description") String description, 
-		@RequestParam("film.releaseYear") int releaseYear, @RequestParam("film.languageId") int languageId,
-			@RequestParam("film.rentalDuration") int rentalDuration, @RequestParam("film.rentalRate") double rentalRate, 
-				@RequestParam("film.length") int length, @RequestParam("film.replacementCost") double replacementCost, 
-					@RequestParam("film.rating") String rating, @RequestParam("film.specialFeatures") String specialFeatures) {
+		@RequestParam("film.releaseYear") String releaseYear, @RequestParam("film.languageId") String languageId,
+			@RequestParam("film.rentalDuration") String rentalDuration, @RequestParam("film.rentalRate") String rentalRate, 
+				@RequestParam("film.length") String length, @RequestParam("film.replacementCost") String replacementCost, 
+					@RequestParam("film.rating") String rating) {
 			Film film = new Film();
+			
+			int year = Integer.parseUnsignedInt(releaseYear);
+			int langId = Integer.parseInt(languageId);
+			int duration = Integer.parseInt(rentalDuration);
+			double rate = Double.parseDouble(rentalRate);
+			int len = Integer.parseInt(length);
+			double repCost = Double.parseDouble(replacementCost);
 			
 			film.setTitle(title);
 			film.setDescription(description);
-			film.setReleaseYear(releaseYear);
-			film.setLanguageId(languageId);
-			film.setRentalDuration(rentalDuration);
-			film.setRentalRate(rentalRate);
-			film.setLength(length);
-			film.setReplacementCost(replacementCost);
+			film.setReleaseYear(year);
+			film.setLanguageId(langId);
+			film.setRentalDuration(duration);
+			film.setRentalRate(rate);
+			film.setLength(len);
+			film.setReplacementCost(repCost);
 			film.setRating(rating);
-			film.setSpecialFeatures(specialFeatures);
-	
+			
+			
 			ModelAndView mv = new ModelAndView();
 						
 			mv.addObject("film" , filmDao.createFilm(film));
@@ -75,10 +82,10 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "deleteFilm.do", params = "id", method = RequestMethod.POST)
-	public ModelAndView deleteFilm(int filmId, RedirectAttributes redir) {
+	public ModelAndView deleteFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute("success", filmDao.deleteFilm(filmId));
-		mv.setViewName("redirect:actionComplete.do");
+		mv.addObject("delete film", filmDao.deleteFilm(filmId));
+		mv.setViewName("WEB-INF/deleteFilm.jsp");
 		return mv;
 	}
 

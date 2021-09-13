@@ -390,7 +390,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 					+ "rental_rate, length, replacement_cost, rating, special_features) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
+			System.out.println("before bind: " + ps);
 			ps.setString(1, film.getTitle());
 			ps.setString(2, film.getDescription());
 			ps.setInt(3, film.getReleaseYear());
@@ -401,9 +401,12 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			ps.setDouble(8, film.getReplacementCost());
 			ps.setString(9, film.getRating());
 			ps.setString(10, film.getSpecialFeatures());
-
+		
+			System.out.println("after bind: " + ps);
+			
+			
 			int result = ps.executeUpdate();
-			conn.commit();
+			System.out.println("Result: " + result);
 			if (result == 1) {
 				ResultSet rs = ps.getGeneratedKeys();
 				System.out.println("generated key: " + rs);
