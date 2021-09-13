@@ -31,6 +31,10 @@
 			</ul>
 			<form action="editFilm.do" method="POST">
 				Input data for each field you'd like to change: <br> <br>
+				Please reenter the film id:
+				<pre class="tab1">
+				<input type="text" name="id" />
+			</pre>
 				Title:
 				<pre class="tab1">
 				<input type="text" name="title" />

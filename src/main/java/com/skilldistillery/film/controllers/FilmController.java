@@ -103,7 +103,7 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path = "editFilm.do", method = RequestMethod.POST)
-	public ModelAndView editFilm(@RequestParam("title") String title, @RequestParam("description") String description, 
+	public ModelAndView editFilm(@RequestParam("id") String filmId, @RequestParam("title") String title, @RequestParam("description") String description, 
 		@RequestParam("releaseYear") String releaseYear, @RequestParam("languageId") String languageId,
 			@RequestParam("rentalDuration") String rentalDuration, @RequestParam("rentalRate") String rentalRate, 
 				@RequestParam("length") String length, @RequestParam("replacementCost") String replacementCost, 
@@ -111,6 +111,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
 		
+		int id = Integer.parseInt(filmId);
 		int year = Integer.parseInt(releaseYear);
 		int langId = Integer.parseInt(languageId);
 		int duration = Integer.parseInt(rentalDuration);
@@ -118,6 +119,7 @@ public class FilmController {
 		int len = Integer.parseInt(length);
 		double repCost = Double.parseDouble(replacementCost);
 		
+		film.setId(id);
 		film.setTitle(title);
 		film.setDescription(description);
 		film.setReleaseYear(year);
