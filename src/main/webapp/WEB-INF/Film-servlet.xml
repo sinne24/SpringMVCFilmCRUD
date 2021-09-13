@@ -12,5 +12,10 @@
 <mvc:annotation-driven></mvc:annotation-driven>
 
 <bean id="dao" class="com.skilldistillery.film.dao.FilmDaoJdbcImpl"></bean>
+ <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/"/>
+    <property name="suffix" value=".jsp"/>
+</bean>
+
 
 </beans>

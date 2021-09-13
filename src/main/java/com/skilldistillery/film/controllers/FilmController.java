@@ -19,13 +19,13 @@ public class FilmController {
 
 	@RequestMapping(path = { "/", "home.do" })
 	public String home() {
-		return "WEB-INF/home.jsp";
+		return "home";
 	}
 
 	@RequestMapping(path = { "retrieveFilm.do" }, params = "id", method = RequestMethod.GET)
 	public ModelAndView retrieveFilm(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("result");
 		int filmID = Integer.parseInt(id);
 		mv.addObject("film", filmDao.findFilmById(filmID));
 
@@ -63,7 +63,7 @@ public class FilmController {
 						
 			mv.addObject("film" , filmDao.createFilm(film));
 		
-			mv.setViewName("WEB-INF/completedAction.jsp");
+			mv.setViewName("completedAction");
 			
 			return mv;
 		}
@@ -71,14 +71,14 @@ public class FilmController {
 	@RequestMapping(path = "confirmation.do", method = RequestMethod.GET)
 	public ModelAndView filmCreated() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("result");
 		return mv;
 	}
 
 	@RequestMapping(path = "actionComplete.do", method = RequestMethod.GET)
 	public ModelAndView actionComplete() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/completedAction.jsp");
+		mv.setViewName("completedAction");
 		return mv;
 	}
 
@@ -88,14 +88,14 @@ public class FilmController {
 		int id = Integer.parseInt(filmId);
 
 		mv.addObject("delete film", filmDao.deleteFilm(id));
-		mv.setViewName("WEB-INF/completedDelete.jsp");
+		mv.setViewName("completedDelete");
 		return mv;
 	}
 	
-	@RequestMapping(path = "retrieveFilmtoEdit.do", params = "id", method = RequestMethod.GET)
+	@RequestMapping(path = "retrieveFilmToEdit.do", params = "id", method = RequestMethod.GET)
 	public ModelAndView retrieveFilmtoEdit(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/resultToEdit.jsp");
+		mv.setViewName("resultToEdit");
 		int filmID = Integer.parseInt(id);
 		mv.addObject("film", filmDao.findFilmById(filmID));
 
@@ -103,11 +103,11 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path = "editFilm.do", method = RequestMethod.POST)
-	public ModelAndView editFilm(@RequestParam("film.title") String title, @RequestParam("film.description") String description, 
-		@RequestParam("film.releaseYear") String releaseYear, @RequestParam("film.languageId") String languageId,
-			@RequestParam("film.rentalDuration") String rentalDuration, @RequestParam("film.rentalRate") String rentalRate, 
-				@RequestParam("film.length") String length, @RequestParam("film.replacementCost") String replacementCost, 
-					@RequestParam("film.rating") String rating, @RequestParam("film.specialFeatures") String specialFeatures) {
+	public ModelAndView editFilm(@RequestParam("title") String title, @RequestParam("description") String description, 
+		@RequestParam("releaseYear") String releaseYear, @RequestParam("languageId") String languageId,
+			@RequestParam("rentalDuration") String rentalDuration, @RequestParam("rentalRate") String rentalRate, 
+				@RequestParam("length") String length, @RequestParam("replacementCost") String replacementCost, 
+					@RequestParam("rating") String rating, @RequestParam("specialFeatures") String specialFeatures) {
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
 		
@@ -130,7 +130,7 @@ public class FilmController {
 		film.setSpecialFeatures(specialFeatures);
 
 		mv.addObject("film", filmDao.editFilm(film));
-		mv.setViewName("WEB-INF/completedAction.jsp");
+		mv.setViewName("completedAction");
 		return mv;
 	}
 }
