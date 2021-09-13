@@ -88,15 +88,17 @@ public class FilmController {
 		int id = Integer.parseInt(filmId);
 
 		mv.addObject("delete film", filmDao.deleteFilm(id));
-		mv.setViewName("WEB-INF/completedAction.jsp");
+		mv.setViewName("WEB-INF/completedDelete.jsp");
 		return mv;
 	}
 	
-	@RequestMapping(path = "editLanding.do", params = "id", method = RequestMethod.GET)
-	public ModelAndView editFilmLanding(@RequestParam("id") int filmId, RedirectAttributes redir) {
+	@RequestMapping(path = "retrieveFilmtoEdit.do", params = "id", method = RequestMethod.GET)
+	public ModelAndView retrieveFilmtoEdit(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute("id", filmId);
-		mv.setViewName("redirect:editFilm.do");
+		mv.setViewName("WEB-INF/resultToEdit.jsp");
+		int filmID = Integer.parseInt(id);
+		mv.addObject("film", filmDao.findFilmById(filmID));
+
 		return mv;
 	}
 	

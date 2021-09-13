@@ -1,18 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Films</title>
+<title>Film Editor</title>
 <style>
-.tab1 {
-	tab-size: 4;
-}
-</style>
+        .tab1 {
+            tab-size: 4;
+        }
+    </style>
 </head>
 <body>
-	<h3>Create Film</h3>
-	<form action="createFilm.do" method="POST">
-		Input data for each field regarding the film you'd like to add: <br>
+<c:choose>
+	<h3>Edit Film</h3>
+      <c:when test="${! empty film}">
+      <ul>
+        <li>${film.id}</li>
+        <li>${film.title}</li>
+        <li>${film.description}</li>        
+        <li>${film.releaseYear}</li>
+        <li>${film.languageId}</li>
+        <li>${film.rentalDuration}</li>
+         <li>${film.rentalRate}</li>        
+        <li>${film.length}</li>
+        <li>${film.replacementCost}</li>
+        <li>${film.rating}</li>
+        <li>${film.specialFeatures}</li>
+      </ul>
+      <form action="editFilm.do" method="POST">
+      	Input data for each field you'd like to change: <br>
 		<br> Title:
 		<pre class="tab1">
 				<input type="text" name="title" />
@@ -54,12 +72,15 @@
 		<input type="text" name="specialFeatures" />
 		</pre>
 		
-	
 		<br> Hit the submit button below once you've filled all of the
 		fields. <br> <br> <input type="submit" value="film" /><br>
 		<br>
-	</form>
-	<a href=home.do>Return to Home</a>
-	<br />
+		</form>
+    </c:when>
+    <c:otherwise>
+      <p>No film found</p>
+    </c:otherwise>
+	</c:choose>
+	<a href=home.do>Return to Home</a><br/>
 </body>
 </html>
