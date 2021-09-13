@@ -33,11 +33,11 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST)
-	public ModelAndView createFilm(@RequestParam("film.title") String title, @RequestParam("film.description") String description, 
-		@RequestParam("film.releaseYear") String releaseYear, @RequestParam("film.languageId") String languageId,
-			@RequestParam("film.rentalDuration") String rentalDuration, @RequestParam("film.rentalRate") String rentalRate, 
-				@RequestParam("film.length") String length, @RequestParam("film.replacementCost") String replacementCost, 
-					@RequestParam("film.rating") String rating, @RequestParam("film.specialFeatures") String specialFeatures) {
+	public ModelAndView createFilm(@RequestParam("title") String title, @RequestParam("description") String description, 
+		@RequestParam("releaseYear") String releaseYear, @RequestParam("languageId") String languageId,
+			@RequestParam("rentalDuration") String rentalDuration, @RequestParam("rentalRate") String rentalRate, 
+				@RequestParam("length") String length, @RequestParam("replacementCost") String replacementCost, 
+					@RequestParam("rating") String rating, @RequestParam("specialFeatures") String specialFeatures) {
 			Film film = new Film();
 			
 			int year = Integer.parseUnsignedInt(releaseYear);
