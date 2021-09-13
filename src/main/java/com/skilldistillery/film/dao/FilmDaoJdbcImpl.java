@@ -406,6 +406,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			
 			
 			int result = ps.executeUpdate();
+			conn.commit();
 			System.out.println("Result: " + result);
 			if (result == 1) {
 				ResultSet rs = ps.getGeneratedKeys();
@@ -435,10 +436,13 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			
 			String sql = "DELETE FROM film WHERE id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
+			System.out.println(stmt);
 			stmt.setInt(1, filmId);
+			System.out.println(stmt);
 
 			conn.commit(); // COMMIT TRANSACTION
 			conn.close();
+			stmt.close();
 			
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -455,7 +459,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 	
 	public Film editFilm(Film film) {
-		boolean status = false;
 		Connection conn = null;
 		
 		try {
@@ -480,20 +483,11 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			ps.setInt(11, film.getId());
 
 			int result = ps.executeUpdate();
-			if (result == 1) {
-				ResultSet rs = ps.getGeneratedKeys();
-				if (rs.next()) {
-					film.setId(rs.getInt(1));
-					conn.commit();
-					status = true;
-				}
-				rs.close();
-				ps.close();
-				conn.close();
-			}
-			ps.close();
+			System.out.println("Result of executeUpdate: " + result);
+			conn.commit();
+			ps.close();				
 			conn.close();
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		

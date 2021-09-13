@@ -32,33 +32,6 @@ public class FilmController {
 		return mv;
 	}
 
-<<<<<<< HEAD
-	@RequestMapping(path = "createFilm.do", params = "film", method = RequestMethod.POST)
-	public ModelAndView createFilm(@RequestParam("title") String title, @RequestParam("description") String description, 
-		@RequestParam("releaseYear") String releaseYear, @RequestParam("languageId") String languageId,
-			@RequestParam("rentalDuration") String rentalDuration, @RequestParam("rentalRate") String rentalRate, 
-				@RequestParam("length") String length, @RequestParam("replacementCost") String replacementCost, 
-					@RequestParam("rating") String rating, @RequestParam("specialFeatures") String specialFeatures) { 
-		
-//					RedirectAttributes redir
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:confirmation.do");
-		
-		int year = Integer.parseInt(releaseYear);
-		int langId = Integer.parseInt(languageId);
-		int duration = Integer.parseInt(rentalDuration);
-		double rate = Double.parseDouble(rentalRate);
-		int len = Integer.parseInt(length);
-		double repCost = Double.parseDouble(replacementCost);
-		
-//		redir.addFlashAttribute("film", filmDao.createFilm(title, description, year, langId, duration, rate,
-//				len, repCost, rating, specialFeatures));
-		
-		mv.addObject("film", filmDao.createFilm(title, description, year, langId, duration, rate,
-				len, repCost, rating, specialFeatures));
-		return mv;
-	}
-=======
 	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST)
 	public ModelAndView createFilm(@RequestParam("film.title") String title, @RequestParam("film.description") String description, 
 		@RequestParam("film.releaseYear") String releaseYear, @RequestParam("film.languageId") String languageId,
@@ -93,7 +66,6 @@ public class FilmController {
 			
 			return mv;
 		}
->>>>>>> 26609eb42d18af6a4aa643d30a1acb4c76cec0a8
 
 	@RequestMapping(path = "confirmation.do", method = RequestMethod.GET)
 	public ModelAndView filmCreated() {
@@ -109,19 +81,22 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "deleteFilm.do", params = "id", method = RequestMethod.POST)
-	public ModelAndView deleteFilm(int filmId) {
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(@RequestParam("id") String filmId) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("delete film", filmDao.deleteFilm(filmId));
-		mv.setViewName("WEB-INF/deleteFilm.jsp");
+		int id = Integer.parseInt(filmId);
+
+		mv.addObject("delete film", filmDao.deleteFilm(id));
+		mv.setViewName("WEB-INF/completedAction.jsp");
 		return mv;
 	}
 
 	@RequestMapping(path = "editFilm.do", params = "film", method = RequestMethod.POST)
-	public ModelAndView editFilm(Film film, RedirectAttributes redir) {
+	public ModelAndView editFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute(filmDao.editFilm(film));
-		mv.setViewName("redirect:confirmation.do");
+		mv.addObject("film", filmDao.editFilm(film));
+		mv.setViewName("WEB-INF/completedAction.jsp");
 		return mv;
 	}
 }
+
