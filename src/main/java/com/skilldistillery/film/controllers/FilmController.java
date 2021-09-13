@@ -111,7 +111,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
 		
-		int year = Integer.parseUnsignedInt(releaseYear);
+		int year = Integer.parseInt(releaseYear);
 		int langId = Integer.parseInt(languageId);
 		int duration = Integer.parseInt(rentalDuration);
 		double rate = Double.parseDouble(rentalRate);
@@ -130,7 +130,7 @@ public class FilmController {
 		film.setSpecialFeatures(specialFeatures);
 
 		mv.addObject("film", filmDao.editFilm(film));
-		mv.setViewName("completedAction");
+		mv.setViewName("completedEdit");
 		return mv;
 	}
 }
