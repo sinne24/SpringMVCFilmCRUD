@@ -81,19 +81,21 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "deleteFilm.do", params = "id", method = RequestMethod.POST)
-	public ModelAndView deleteFilm(int filmId) {
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(@RequestParam("id") String filmId) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("delete film", filmDao.deleteFilm(filmId));
-		mv.setViewName("WEB-INF/deleteFilm.jsp");
+		int id = Integer.parseInt(filmId);
+
+		mv.addObject("delete film", filmDao.deleteFilm(id));
+		mv.setViewName("WEB-INF/completedAction.jsp");
 		return mv;
 	}
 
 	@RequestMapping(path = "editFilm.do", params = "film", method = RequestMethod.POST)
-	public ModelAndView editFilm(Film film, RedirectAttributes redir) {
+	public ModelAndView editFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute(filmDao.editFilm(film));
-		mv.setViewName("redirect:confirmation.do");
+		mv.addObject("film", filmDao.editFilm(film));
+		mv.setViewName("WEB-INF/completedAction.jsp");
 		return mv;
 	}
 }
