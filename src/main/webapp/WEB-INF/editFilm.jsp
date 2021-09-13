@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h3>Edit Film</h3>
-	<form action="editFilm.do" method="POST">
+	
 <c:choose>
       <c:when test="${! empty film}">
       <ul>
@@ -36,13 +36,8 @@
     </c:otherwise>
   </c:choose>
 		Input data for each field regarding the film you'd like to edit:
-		<!-- <br>
-		<br>
-		<b>Enter Existing FilmID:</b>
-    	<br>
-    	<input type="number" name="id"/>
-    	<br>
-    	<br> -->
+	
+    	<form action="editFilm.do" method="POST">
     	<b>Enter New Title:</b>
 		<br>
 		<input type="text" name="film.title"/>
@@ -105,7 +100,7 @@
 		<br>
 		Hit the submit button below once you've filled all of the fields.
 		<br>
-		<input type="submit" value="film" />
+		<input type="submit" value="Edit film" />
 	</form>
 	<a href=home.do>Return to Home</a><br/>
 </body>
