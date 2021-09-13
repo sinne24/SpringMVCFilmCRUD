@@ -13,53 +13,75 @@
 	<h3>Edit Film</h3>
 	<form action="editFilm.do" method="POST">
 		Input data for each field regarding the film you'd like to edit:
-		<br>
+		<!-- <br>
 		<br>
 		<b>Enter Existing FilmID:</b>
     	<br>
     	<input type="number" name="id"/>
     	<br>
-    	<br>
+    	<br> -->
     	<b>Enter New Title:</b>
 		<br>
-		<input type="text" name="title"/>
+		<input type="text" name="film.title"/>
 		<br>
 		<b>Enter New Description:</b>
 		<br>
-		<input type="text" name="description"/> 
+		<input type="text" name="film.description"/> 
 		<br>
 		<b>Enter New Release Year:</b>
 		<br>
-		<input type="text" name="releaseYear"/> 
+		<input type="text" name="film.releaseYear"/> 
 		<br>
 		<b>Enter New Language ID:</b>
 		<br>
-		<input type="text" name="languageId"/> 
+		<input type="text" name="film.languageId"/> 
 		<br>
 		<b>Enter New Rental Duration (in days):</b>
 		<br>
-		<input type="text" name="rentalDuration"/> 
+		<input type="text" name="film.rentalDuration"/> 
 		<br>
 		<b>Enter New Rental Rate:</b>
 		<br>
-		<input type="text" name="rentalRate"/> 
+		<input type="text" name="film.rentalRate"/> 
 		<br>
 		<b>Enter New Film length:</b>
 		<br>
-		<input type="text" name="length"/> 
+		<input type="text" name="film.length"/> 
 		<br>
 		<b>Enter New Film Replacement Cost:</b>
 		<br>
-		<input type="text" name="replacementCost"/> 
+		<input type="text" name="film.replacementCost"/> 
 		<br>
-		<b>Enter New Rating (G, PG, PG13, R, or NC17):</b>
 		<br>
-		<input type="text" name="rating"/> 
+		
+		<input type="text" name="film.rating" />
+		
+		<!-- <label for="rating">New Film Rating:</label> <br />
+          <select class="film.rating" id="film.rating">
+            <option value="">--</option>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG13">PG13</option>
+            <option value="R">R</option>
+            <option value="NC17">NC17</option>
+          </select> -->
+		<br>
+		<br>
+		<input type="text" name="specialFeatures" />
+		<!-- <label for="film.specialFeatures">New Special Features:</label> <br />
+          <select class="film.specialFeatures" id="film.specialFeatures">
+            <option value="Trailers">Trailers</option>
+            <option value="Commentaries">Commentaries</option>
+            <option value="Deleted Scenes">Deleted Scenes</option>
+            <option value="Behind the Scenes">Behind the Scenes</option>
+          </select> -->
+		
+		<br>
 		<br>
 		<br>
 		Hit the submit button below once you've filled all of the fields.
 		<br>
-		<input type="submit" value="Submit Film Changes" />
+		<input type="submit" value="film" />
 	</form>
 	<a href=home.do>Return to Home</a><br/>
 </body>

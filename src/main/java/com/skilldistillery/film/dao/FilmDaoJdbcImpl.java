@@ -460,16 +460,16 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	
 	public Film editFilm(Film film) {
 		Connection conn = null;
-		
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
+		
 			conn.setAutoCommit(false); // START TRANSACTION
 			String sql = "UPDATE film SET title=?, description=?, "
 					+ "release_year=?, language_id=?, rental_duration=?, "
 					+ "rental_rate=?, length=?, replacement_cost=?, rating=?, "
 					+ "special_features=? " + " WHERE id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			
+			System.out.println(ps);
 			ps.setString(1, film.getTitle());
 			ps.setString(2, film.getDescription());
 			ps.setInt(3, film.getReleaseYear());
@@ -481,8 +481,10 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			ps.setString(9, film.getRating());
 			ps.setString(10, film.getSpecialFeatures());
 			ps.setInt(11, film.getId());
+			System.out.println(ps);
 
 			int result = ps.executeUpdate();
+			System.out.println(result);
 			System.out.println("Result of executeUpdate: " + result);
 			conn.commit();
 			ps.close();				
