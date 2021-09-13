@@ -32,6 +32,7 @@ public class FilmController {
 		return mv;
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(path = "createFilm.do", params = "film", method = RequestMethod.POST)
 	public ModelAndView createFilm(@RequestParam("title") String title, @RequestParam("description") String description, 
 		@RequestParam("releaseYear") String releaseYear, @RequestParam("languageId") String languageId,
@@ -57,6 +58,42 @@ public class FilmController {
 				len, repCost, rating, specialFeatures));
 		return mv;
 	}
+=======
+	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST)
+	public ModelAndView createFilm(@RequestParam("film.title") String title, @RequestParam("film.description") String description, 
+		@RequestParam("film.releaseYear") String releaseYear, @RequestParam("film.languageId") String languageId,
+			@RequestParam("film.rentalDuration") String rentalDuration, @RequestParam("film.rentalRate") String rentalRate, 
+				@RequestParam("film.length") String length, @RequestParam("film.replacementCost") String replacementCost, 
+					@RequestParam("film.rating") String rating) {
+			Film film = new Film();
+			
+			int year = Integer.parseUnsignedInt(releaseYear);
+			int langId = Integer.parseInt(languageId);
+			int duration = Integer.parseInt(rentalDuration);
+			double rate = Double.parseDouble(rentalRate);
+			int len = Integer.parseInt(length);
+			double repCost = Double.parseDouble(replacementCost);
+			
+			film.setTitle(title);
+			film.setDescription(description);
+			film.setReleaseYear(year);
+			film.setLanguageId(langId);
+			film.setRentalDuration(duration);
+			film.setRentalRate(rate);
+			film.setLength(len);
+			film.setReplacementCost(repCost);
+			film.setRating(rating);
+			
+			
+			ModelAndView mv = new ModelAndView();
+						
+			mv.addObject("film" , filmDao.createFilm(film));
+		
+			mv.setViewName("WEB-INF/completedAction.jsp");
+			
+			return mv;
+		}
+>>>>>>> 26609eb42d18af6a4aa643d30a1acb4c76cec0a8
 
 	@RequestMapping(path = "confirmation.do", method = RequestMethod.GET)
 	public ModelAndView filmCreated() {
@@ -73,10 +110,10 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "deleteFilm.do", params = "id", method = RequestMethod.POST)
-	public ModelAndView deleteFilm(int filmId, RedirectAttributes redir) {
+	public ModelAndView deleteFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute("success", filmDao.deleteFilm(filmId));
-		mv.setViewName("redirect:actionComplete.do");
+		mv.addObject("delete film", filmDao.deleteFilm(filmId));
+		mv.setViewName("WEB-INF/deleteFilm.jsp");
 		return mv;
 	}
 
