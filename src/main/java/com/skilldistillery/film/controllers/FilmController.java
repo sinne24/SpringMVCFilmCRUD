@@ -32,19 +32,33 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "createFilm.do", params = "film", method = RequestMethod.POST)
-	public ModelAndView createFilm(String title, String description, Integer releaseYear, int languageId,
-			int rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
-			String specialFeatures, RedirectAttributes redir) {
-		ModelAndView mv = new ModelAndView();
+	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST)
+	public ModelAndView createFilm(@RequestParam("film.title") String title, @RequestParam("film.description") String description, 
+		@RequestParam("film.releaseYear") int releaseYear, @RequestParam("film.languageId") int languageId,
+			@RequestParam("film.rentalDuration") int rentalDuration, @RequestParam("film.rentalRate") double rentalRate, 
+				@RequestParam("film.length") int length, @RequestParam("film.replacementCost") double replacementCost, 
+					@RequestParam("film.rating") String rating, @RequestParam("film.specialFeatures") String specialFeatures) {
+			Film film = new Film();
+			
+			film.setTitle(title);
+			film.setDescription(description);
+			film.setReleaseYear(releaseYear);
+			film.setLanguageId(languageId);
+			film.setRentalDuration(rentalDuration);
+			film.setRentalRate(rentalRate);
+			film.setLength(length);
+			film.setReplacementCost(replacementCost);
+			film.setRating(rating);
+			film.setSpecialFeatures(specialFeatures);
+	
+			ModelAndView mv = new ModelAndView();
+						
+			mv.addObject("film" , filmDao.createFilm(film));
 		
-		//TODO: add logic to convert String language into language ID
-		//TODO: parse numbers out of strings as necessary for each field
-		mv.setViewName("redirect:confirmation.do");
-			redir.addFlashAttribute("film", filmDao.createFilm(title, description, releaseYear, languageId, rentalDuration, rentalRate,
-					length, replacementCost, rating, specialFeatures));
-		return mv;
-	}
+			mv.setViewName("WEB-INF/completedAction.jsp");
+			
+			return mv;
+		}
 
 	@RequestMapping(path = "confirmation.do", method = RequestMethod.GET)
 	public ModelAndView filmCreated() {

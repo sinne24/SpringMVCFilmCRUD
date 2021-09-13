@@ -378,58 +378,42 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return true;
 	}
 
-	public boolean createFilm(String title, String description, Integer releaseYear, int languageId, int rentalDuration,
-			double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures) {
+	public Film createFilm(Film film) {
 		
 		Connection conn = null;
-		boolean status = false;
-
-		Film film = new Film();
-		film.setTitle(title);
-		film.setDescription(description);
-		film.setReleaseYear(releaseYear);
-		film.setLanguageId(languageId);
-		film.setRentalDuration(rentalDuration);
-		film.setRentalRate(rentalRate);
-		film.setLength(length);
-		film.setReplacementCost(replacementCost);
-		film.setRating(rating);
-		film.setSpecialFeatures(specialFeatures);
-		
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false); // START TRANSACTION
 
-			String sql = "INSERT INTO film (film.title, film.description, "
-					+ "film.release_year, film.language_id, film.rental_duration, "
-					+ "film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features) "
+			String sql = "INSERT INTO film (title, description, "
+					+ "release_year, language_id, rental_duration, "
+					+ "rental_rate, length, replacement_cost, rating, special_features) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setString(1, title);
-			ps.setString(2, description);
-			ps.setInt(3, releaseYear);
-			ps.setInt(4, languageId);
-			ps.setInt(5, rentalDuration);
-			ps.setDouble(6, rentalRate);
-			ps.setInt(7, length);
-			ps.setDouble(8, replacementCost);
-			ps.setString(9, rating);
-			ps.setString(10, specialFeatures);
+			ps.setString(1, film.getTitle());
+			ps.setString(2, film.getDescription());
+			ps.setInt(3, film.getReleaseYear());
+			ps.setInt(4, film.getLanguageId());
+			ps.setInt(5, film.getRentalDuration());
+			ps.setDouble(6, film.getRentalRate());
+			ps.setInt(7, film.getLength());
+			ps.setDouble(8, film.getReplacementCost());
+			ps.setString(9, film.getRating());
+			ps.setString(10, film.getSpecialFeatures());
 
 			int result = ps.executeUpdate();
+			conn.commit();
 			if (result == 1) {
 				ResultSet rs = ps.getGeneratedKeys();
+				System.out.println("generated key: " + rs);
 				if (rs.next()) {
 					film.setId(rs.getInt(1));
-					conn.commit();
-					status = true;
 				}
 				rs.close();
 				ps.close();
 				conn.close();
-				return status;
-			}
+				}
 			ps.close();
 			conn.close();
 
@@ -437,7 +421,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			e.printStackTrace();
 		
 		}
-		return status;
+		return film;
 	}
 
 	public boolean deleteFilm(int filmId) {

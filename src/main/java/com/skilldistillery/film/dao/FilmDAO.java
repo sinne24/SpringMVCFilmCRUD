@@ -16,8 +16,7 @@ public interface FilmDAO {
 		  public Actor createActor(Actor actor);
 		  public boolean saveActor(Actor actor);
 		  public boolean deleteActor(Actor actor);
-		  public boolean createFilm(String title, String description, Integer releaseYear, int languageId, int rentalDuration,
-					double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures);
+		  public Film createFilm(Film film);
 		  public boolean deleteFilm(int filmId);
 		  public Film editFilm(Film film);
 		
