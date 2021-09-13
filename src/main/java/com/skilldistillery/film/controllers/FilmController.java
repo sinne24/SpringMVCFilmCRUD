@@ -92,7 +92,7 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "retrieveFilmtoEdit.do", params = "id", method = RequestMethod.GET)
+	@RequestMapping(path = "retrieveFilmToEdit.do", params = "id", method = RequestMethod.GET)
 	public ModelAndView retrieveFilmtoEdit(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/resultToEdit.jsp");
